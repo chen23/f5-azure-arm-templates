@@ -891,10 +891,10 @@
             }, 
             "Yes": {
                 "hashCmd": "[concat('custId=`echo \"', variables('subscriptionId'), '\"|sha512sum|cut -d \" \" -f 1`; deployId=`echo \"', variables('deploymentId'), '\"|sha512sum|cut -d \" \" -f 1`')]", 
-                "metricsCmd": "[concat(' --metrics customerId:${custId},deploymentId:${deployId},templateName:ha-avset-existing_stack-supported,templateVersion:4.2.0.0,region:', variables('location'), ',bigIpVersion:', parameters('bigIpVersion') ,',licenseType:BYOL,cloudLibsVersion:', variables('f5CloudLibsTag'), ',cloudName:azure')]"
+                "metricsCmd": "[concat(' --metrics customerId:${custId},deploymentId:${deployId},templateName:ha-avset-existing_stack-chen,templateVersion:4.2.0.0,region:', variables('location'), ',bigIpVersion:', parameters('bigIpVersion') ,',licenseType:BYOL,cloudLibsVersion:', variables('f5CloudLibsTag'), ',cloudName:azure')]"
             }
         }, 
-        "customConfig": "### START (INPUT) CUSTOM CONFIGURATION HERE\n", 
+        "customConfig": "### START (INPUT) CUSTOM CONFIGURATION HERE\ncurl https://raw.githubusercontent.com/chen23/f5-cloud-libs-azure/chen-azureusgovernment/scripts/failoverProvider.js > /config/cloud/azure/node_modules/f5-cloud-libs/node_modules/f5-cloud-libs-azure/scripts/failoverProvider.js\n", 
         "installCustomConfig": "[concat(variables('singleQuote'), '#!/bin/bash\n', variables('customConfig'), variables('singleQuote'))]"
     }, 
     "resources": [
@@ -1349,7 +1349,7 @@
                 "diagnosticsProfile": {
                     "bootDiagnostics": {
                         "enabled": true, 
-                        "storageUri": "[concat('http://',variables('newDataStorageAccountName'),'.blob.core.windows.net')]"
+                        "storageUri": "[concat('http://',variables('newDataStorageAccountName'),'.blob.core.usgovcloudapi.net')]"
                     }
                 }, 
                 "hardwareProfile": {
@@ -1434,7 +1434,7 @@
                 "diagnosticsProfile": {
                     "bootDiagnostics": {
                         "enabled": true, 
-                        "storageUri": "[concat('http://',variables('newDataStorageAccountName'),'.blob.core.windows.net')]"
+                        "storageUri": "[concat('http://',variables('newDataStorageAccountName'),'.blob.core.usgovcloudapi.net')]"
                     }
                 }, 
                 "hardwareProfile": {
